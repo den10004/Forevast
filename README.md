@@ -7,4 +7,4 @@
 Реализованные возможности:
 Получение прогноза погоды за сегодня (температура, влажность, ветер, восход/закат солнца)
 
-[Ссылка на проект размещённый на vercel]([https://vue-weather-rouge.vercel.app/](https://forecast-chi.vercel.app/))
+[Ссылка на проект размещённый на vercel](https://forecast-chi.vercel.app/)
