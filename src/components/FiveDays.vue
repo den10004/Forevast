@@ -15,28 +15,25 @@ const today = new Date().toLocaleString("en-EN", {
 </script>
 
 <template>
-  <section class="">
-    <div class="">
-      <div class="">
-        <div class="">
-          <div class="">
-            <div class="block-bottom-text-block-title">5 дней</div>
+  <section class="block">
+    Прогноз на 5 дней
+    <ul class="cards">
+      <li class="card" v-for="item in weatherFiveInfo?.list">
+        <p class="card__title">
+          {{ (item?.dt_txt).slice(0, 16) }}
+        </p>
+        <div
+          :style="`background-image: url('/weather-main/${item?.weather[0].description}.png');`"
+          class="pic-main"
+        ></div>
+        <p class="card__title">{{ Math.round(item?.main.temp) }} °C</p>
+        <p class="card__title">Давление: {{ item?.main.pressure }} mm</p>
 
-            <ul class="cards">
-              <li class="card" v-for="item in weatherFiveInfo?.list">
-                <p>{{ (item?.dt_txt).slice(5, 16).replace("-", ".") }}</p>
-                <h4>{{ Math.round(item?.main.temp) }} °C</h4>
-                <h4>Давление: {{ item?.main.pressure }} mm</h4>
-
-                <h4 class="weather-desc text-block">
-                  {{ capitalizeFirstLetter(item?.weather[0].description) }}
-                </h4>
-              </li>
-            </ul>
-          </div>
+        <div class="weather-desc text-block card__title">
+          {{ capitalizeFirstLetter(item?.weather[0].description) }}
         </div>
-      </div>
-    </div>
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -47,12 +44,38 @@ const today = new Date().toLocaleString("en-EN", {
   display: flex
   width: 100%
   flex-wrap: wrap
+  margin-top: 15px
+  padding-left: 15px
 
-
-  .card
-    width: 150px
+.block
+    height: 100%
+    margin-left: 10px
+    padding: 28px 16px 16px
+    background: url(/src/assets/img/gradient-1.jpg) no-repeat 0% 0%
+    background-size: cover
+    border-radius: 25px
+    margin-top: 16px
+.card
+    width: 160px
     height: auto
-    border: 1px solid red
     list-style-type: none
     margin: 0px 10px 10px 0
+    padding: 10px
+    background: url(/src/assets/img/gradient-4.jpg) no-repeat 50% 50%
+    background-size: cover
+    border-radius: 8px
+
+.card__title
+    font-size: 13px
+    text-align: center
+    line-height: 20px
+
+
+.pic-main
+    width: 60px
+    height: 60px
+    background-repeat: no-repeat
+    background-position: 50% 50%
+    background-size: contain
+    margin: 10px auto
 </style>
