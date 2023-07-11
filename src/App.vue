@@ -1,15 +1,22 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
-import { API_KEY, BASE_URL } from "./constants";
+import { API_KEY, BASE_URL, BASE_FIVEDAYS_URL } from "./constants";
 import { capitalizeFirstLetter } from "./utils";
 import WeatherSummary from "./components/WeatherSummary.vue";
 import Highlights from "./components/Highlights.vue";
 import Coords from "./components/Coords.vue";
 import Humidity from "./components/Humidity.vue";
+import FiveDays from "./components/FiveDays.vue";
 
 const city = ref("Казань");
 const weatherInfo = ref(null);
+const weatherFiveInfo = ref(null);
 const isError = computed(() => weatherInfo.value?.cod !== 200);
+
+function ewe() {
+  getWeather();
+  getFiveWeather();
+}
 
 function getWeather() {
   fetch(`${BASE_URL}?q=${city.value}&units=metric&appid=${API_KEY}`)
@@ -17,7 +24,14 @@ function getWeather() {
     .then((data) => (weatherInfo.value = data));
 }
 
+function getFiveWeather() {
+  fetch(`${BASE_FIVEDAYS_URL}?q=${city.value}&units=metric&appid=${API_KEY}`)
+    .then((response) => response.json())
+    .then((data) => (weatherFiveInfo.value = data));
+}
+
 onMounted(getWeather);
+onMounted(getFiveWeather);
 </script>
 
 <template>
@@ -35,7 +49,7 @@ onMounted(getWeather);
                     v-model="city"
                     type="text"
                     class="search"
-                    @keyup.enter="getWeather"
+                    @keyup.enter="ewe"
                   />
                 </div>
                 <WeatherSummary v-if="!isError" :weatherInfo="weatherInfo" />
@@ -47,10 +61,12 @@ onMounted(getWeather);
                 </div>
               </div>
             </section>
+
             <section v-if="!isError" class="section section-right">
               <Highlights :weatherInfo="weatherInfo" />
             </section>
           </div>
+          <FiveDays v-if="!isError" :weatherFiveInfo="weatherFiveInfo" />
           <div v-if="!isError" class="sections">
             <Coords :coord="weatherInfo.coord" />
             <Humidity :humidity="weatherInfo.main.humidity" />
