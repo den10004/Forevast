@@ -39,6 +39,49 @@ const today = new Date().toLocaleString("en-EN", {
 
 <style scoped>
 .cards {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-row-gap: 10px;
+  padding-left: 0;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1150px) {
+  .cards {
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 850px;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .cards {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 750px;
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 500px;
+  }
+}
+
+@media screen and (max-width: 910px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 340px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .cards {
+    grid-template-columns: repeat(1, 1fr);
+    max-width: 160px;
+  }
+}
+/*
+.cards {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
@@ -76,7 +119,7 @@ const today = new Date().toLocaleString("en-EN", {
     width: 160px;
   }
 }
-
+*/
 .block {
   height: 100%;
   margin-left: 10px;
@@ -85,25 +128,25 @@ const today = new Date().toLocaleString("en-EN", {
   background-size: cover;
   border-radius: 25px;
   margin-top: 16px;
-  padding-left: 15px;
+  /*padding-left: 15px;*/
 }
 
 .card {
   width: 160px;
   height: auto;
   list-style-type: none;
-  margin: 0px 10px 10px 0;
+  /*margin: 0px 10px 10px 0;*/
   padding: 10px;
   background: url(/src/assets/img/gradient-4.jpg) no-repeat 50% 50%;
   background-size: cover;
   border-radius: 8px;
 }
-
+/*
 @media screen and (max-width: 436px) {
   .card {
     margin: 0px 0px 10px 0;
   }
-}
+}*/
 
 .card__title {
   font-size: 13px;
