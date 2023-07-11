@@ -16,7 +16,7 @@ const today = new Date().toLocaleString("en-EN", {
 
 <template>
   <section class="block">
-    Прогноз на 5 дней
+    <h4 class="title">Прогноз на 5 дней</h4>
     <ul class="cards">
       <li class="card" v-for="item in weatherFiveInfo?.list">
         <p class="card__title">
@@ -37,45 +37,92 @@ const today = new Date().toLocaleString("en-EN", {
   </section>
 </template>
 
-<style lang="sass" scoped>
-@import '../assets/styles/main'
+<style scoped>
+.cards {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: 15px auto 0 auto;
+  padding-left: 15px;
+}
 
-.cards
-  display: flex
-  width: 100%
-  flex-wrap: wrap
-  margin-top: 15px
-  padding-left: 15px
+@media screen and (max-width: 1171px) {
+  .cards {
+    padding-left: 0px;
+    width: 850px;
+  }
+}
 
-.block
-    height: 100%
-    margin-left: 10px
-    padding: 28px 16px 16px
-    background: url(/src/assets/img/gradient-1.jpg) no-repeat 0% 0%
-    background-size: cover
-    border-radius: 25px
-    margin-top: 16px
-.card
-    width: 160px
-    height: auto
-    list-style-type: none
-    margin: 0px 10px 10px 0
-    padding: 10px
-    background: url(/src/assets/img/gradient-4.jpg) no-repeat 50% 50%
-    background-size: cover
-    border-radius: 8px
+@media screen and (max-width: 988px) {
+  .cards {
+    width: 680px;
+  }
+}
 
-.card__title
-    font-size: 13px
-    text-align: center
-    line-height: 20px
+@media screen and (max-width: 796px) {
+  .cards {
+    width: 510px;
+  }
+}
 
+@media screen and (max-width: 618px) {
+  .cards {
+    width: 340px;
+  }
+}
 
-.pic-main
-    width: 60px
-    height: 60px
-    background-repeat: no-repeat
-    background-position: 50% 50%
-    background-size: contain
-    margin: 10px auto
+@media screen and (max-width: 436px) {
+  .cards {
+    width: 160px;
+  }
+}
+
+.block {
+  height: 100%;
+  margin-left: 10px;
+  padding: 28px 16px 16px;
+  background: url(/src/assets/img/gradient-1.jpg) no-repeat 0% 0%;
+  background-size: cover;
+  border-radius: 25px;
+  margin-top: 16px;
+  padding-left: 15px;
+}
+
+.card {
+  width: 160px;
+  height: auto;
+  list-style-type: none;
+  margin: 0px 10px 10px 0;
+  padding: 10px;
+  background: url(/src/assets/img/gradient-4.jpg) no-repeat 50% 50%;
+  background-size: cover;
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 436px) {
+  .card {
+    margin: 0px 0px 10px 0;
+  }
+}
+
+.card__title {
+  font-size: 13px;
+  text-align: center;
+  line-height: 20px;
+}
+
+.title {
+  font-size: 16px;
+  margin: 0 0 0 15px;
+  font-weight: normal;
+}
+
+.pic-main {
+  width: 60px;
+  height: 60px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+  margin: 10px auto;
+}
 </style>
