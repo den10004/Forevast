@@ -1,6 +1,6 @@
-# Forecast.
+# Forecast. v 1.1.6
 
-## Получение погоды по API [openweathermap.org](https://openweathermap.org/)  написанный на Vue.js
+## Получение погоды по API [openweathermap.org](https://openweathermap.org/) написанный на Vue.js
 
 Описание: получение прогноза погоды по набранному городу
 

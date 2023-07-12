@@ -1,16 +1,10 @@
 <script setup>
-import { capitalizeFirstLetter } from "../utils";
+import { capitalizeFirstLetter, timeConverter } from "../utils";
 const props = defineProps({
   weatherFiveInfo: {
     type: [Object, null],
     required: true,
   },
-});
-
-const today = new Date().toLocaleString("en-EN", {
-  weekday: "short",
-  month: "long",
-  day: "numeric",
 });
 </script>
 
@@ -20,7 +14,7 @@ const today = new Date().toLocaleString("en-EN", {
     <ul class="cards">
       <li class="card" v-for="item in weatherFiveInfo?.list">
         <p class="card__title">
-          {{ (item?.dt_txt).slice(0, 16) }}
+          {{ timeConverter(item?.dt) }}
         </p>
         <div
           :style="`background-image: url('/weather-main/${item?.weather[0].description}.png');`"
@@ -43,7 +37,7 @@ const today = new Date().toLocaleString("en-EN", {
   grid-template-columns: repeat(6, 1fr);
   grid-row-gap: 10px;
   padding-left: 0;
-  margin: 0 auto;
+  margin: 10px auto 0 auto;
 }
 
 @media screen and (max-width: 1150px) {
@@ -77,49 +71,10 @@ const today = new Date().toLocaleString("en-EN", {
 @media screen and (max-width: 440px) {
   .cards {
     grid-template-columns: repeat(1, 1fr);
-    max-width: 160px;
-  }
-}
-/*
-.cards {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  margin: 15px auto 0 auto;
-  padding-left: 15px;
-}
-
-@media screen and (max-width: 1171px) {
-  .cards {
-    padding-left: 0px;
-    width: 850px;
+    max-width: 100%;
   }
 }
 
-@media screen and (max-width: 988px) {
-  .cards {
-    width: 680px;
-  }
-}
-
-@media screen and (max-width: 796px) {
-  .cards {
-    width: 510px;
-  }
-}
-
-@media screen and (max-width: 618px) {
-  .cards {
-    width: 340px;
-  }
-}
-
-@media screen and (max-width: 436px) {
-  .cards {
-    width: 160px;
-  }
-}
-*/
 .block {
   height: 100%;
   margin-left: 10px;
@@ -128,25 +83,23 @@ const today = new Date().toLocaleString("en-EN", {
   background-size: cover;
   border-radius: 25px;
   margin-top: 16px;
-  /*padding-left: 15px;*/
 }
 
 .card {
   width: 160px;
   height: auto;
   list-style-type: none;
-  /*margin: 0px 10px 10px 0;*/
   padding: 10px;
   background: url(/src/assets/img/gradient-4.jpg) no-repeat 50% 50%;
   background-size: cover;
   border-radius: 8px;
 }
-/*
-@media screen and (max-width: 436px) {
+
+@media screen and (max-width: 440px) {
   .card {
-    margin: 0px 0px 10px 0;
+    width: 100%;
   }
-}*/
+}
 
 .card__title {
   font-size: 13px;
@@ -156,7 +109,8 @@ const today = new Date().toLocaleString("en-EN", {
 
 .title {
   font-size: 16px;
-  margin: 0 0 0 15px;
+  margin: 0;
+  text-align: center;
   font-weight: normal;
 }
 
