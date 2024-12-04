@@ -9,4 +9,4 @@
 
 
 ![img](./screen.jpg)
-[Ссылка](https://forecast-chi.vercel.app/)
+
